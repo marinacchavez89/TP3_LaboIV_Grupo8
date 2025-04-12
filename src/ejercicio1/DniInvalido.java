@@ -1,5 +1,13 @@
+
 package ejercicio1;
 
-public class DniInvalido {
+import java.io.IOException;
+
+
+public class DniInvalido extends IOException {
+	public DniInvalido (String cartel) {
+		super(cartel);
+	}
 
 }
+
