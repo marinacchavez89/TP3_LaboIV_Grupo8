@@ -7,6 +7,7 @@ public class Verificar {
     } catch (NumberFormatException e) {
         throw new DniInvalido("DNI inválido: debe ser solo numérico.");  
     }
+
 }
 
 }
