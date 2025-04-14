@@ -1,18 +1,20 @@
 package ejercicio1;
 
-public class Persona {
+public class Persona implements Comparable<Persona> {
 
 	private String nombre;
 	private String apellido;
 	private int dni;
 	
 		
-//contructor
+	//contructor
+	
 	public Persona(String nombre, String apellido, int dni) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
 	}
+	
 	// getters and setters
 	
 	public String getNombre() {
@@ -39,6 +41,22 @@ public class Persona {
 		return nombre + " " + apellido + " - DNI: " + dni ;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+	    Persona persona = (Persona) obj;
+	    return dni == persona.dni;
+	}
+
+	@Override
+	public int hashCode() {
+	    return Integer.hashCode(dni);
+	}
 	
+	@Override
+	public int compareTo(Persona otra) {
+        return this.apellido.compareToIgnoreCase(otra.apellido);
+    }
 	
 }

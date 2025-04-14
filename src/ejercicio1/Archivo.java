@@ -6,8 +6,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Archivo {
+	
 	private String ruta;
 	
 	public String getRuta() {
@@ -96,4 +99,33 @@ public class Archivo {
 			System.out.println("No se encontro el archivo");
 		}
 	}
+	
+	public Set<Persona> leerPersonasSinDuplicadosYOrdenadas() {
+		Set<Persona> personasSet = new TreeSet<>(); // Utilizo TreeSet que ordena automáticamente.
+
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split("-");
+                if (partes.length == 3) {
+                    String nombre = partes[0].trim();
+                    String apellido = partes[1].trim();
+                    String dniStr = partes[2].trim();
+
+                    try {
+                        Verificar.verificarDniInvalido(dniStr);
+                        int dni = Integer.parseInt(dniStr);
+                        personasSet.add(new Persona(nombre, apellido, dni)); // Acá el HashSet usa equals() y hashCode() de la clase Persona para ver si la persona ya está en el set.
+                    } catch (DniInvalido e) {
+                        System.out.println("DNI inválido: " + dniStr);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return personasSet;
+    }
+	
 }
