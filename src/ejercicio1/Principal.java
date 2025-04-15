@@ -48,7 +48,16 @@ public class Principal {
         {
         	System.out.println(p);
         }
-		
+        System.out.println("\nCantidad total de personas válidas: " + personas.size());
+
+     // NUEVO: Obtener y mostrar los DNIs inválidos
+        Set<String> dnisInvalidos = archivo.obtenerDnisInvalidos();
+
+        System.out.println("\nDNIs inválidos encontrados en Personas.txt:\n");
+        for (String dni : dnisInvalidos) {
+            System.out.println("DNI inválido: " + dni);
+        }
+        System.out.println("\nCantidad total de DNIs inválidos: " + dnisInvalidos.size());
 	}
 
 }

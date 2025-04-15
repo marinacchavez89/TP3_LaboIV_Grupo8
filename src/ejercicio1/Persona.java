@@ -38,7 +38,7 @@ public class Persona implements Comparable<Persona> {
 
 	@Override
 	public String toString() {
-		return nombre + " " + apellido + " - DNI: " + dni ;
+		return String.format("%-15s %-15s DNI: %08d", nombre, apellido, dni);
 	}
 	
 	@Override

@@ -143,6 +143,28 @@ public class Archivo {
 		}
 	}
 	
-	
+	public Set<String> obtenerDnisInvalidos() {
+	    Set<String> dnisInvalidos = new TreeSet<>();
+
+	    try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+	        String linea;
+	        while ((linea = br.readLine()) != null) {
+	            String[] partes = linea.split("-");
+	            if (partes.length == 3) {
+	                String dniStr = partes[2].trim();
+
+	                try {
+	                    Verificar.verificarDniInvalido(dniStr);
+	                } catch (DniInvalido e) {
+	                    dnisInvalidos.add(dniStr);
+	                }
+	            }
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
+	    return dnisInvalidos;
+	}
 	
 }
