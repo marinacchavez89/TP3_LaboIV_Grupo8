@@ -39,7 +39,15 @@ public class Principal {
         System.out.println("\nLista de personas ordenadas por apellido:\n");
         for (Persona p : personas) {
             System.out.println(p);
-        }		
+        }	
+        
+        archivo.escribir_en_Resultado(personas);
+        
+        System.out.println("\n Lista de Personas escritas en Resultado.txt\n");
+        for(Persona p : personas)
+        {
+        	System.out.println(p);
+        }
 		
 	}
 

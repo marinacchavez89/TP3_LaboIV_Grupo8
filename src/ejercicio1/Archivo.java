@@ -128,4 +128,21 @@ public class Archivo {
         return personasSet;
     }
 	
+	public void escribir_en_Resultado(Set<Persona> personas)
+	{
+		try(BufferedWriter wr = new BufferedWriter(new FileWriter("Resultado.txt"))) {
+			
+			for(Persona persona : personas)
+			{
+				wr.write(persona.toString());
+				wr.newLine();
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }
